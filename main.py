@@ -15,7 +15,7 @@ label_wishListTitle.place(x = 490, y = 20)
 list_wish = Listbox(window, height=20, width=40)
 list_wish.place(x = 400, y = 50)
 list_wish.insert(0, 'The Legend of Zelda Tears of the Kingdom')
-list_wish.insert(1, "Pokemom Let's go Pikachu")
+list_wish.insert(5, "Pokemom Let's go Pikachu")
 list_wish.insert(2, 'Dark Souls Remaster')
 
 label_finishListTitle = Label(window, text="Finish Game List")
