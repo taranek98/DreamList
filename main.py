@@ -26,33 +26,33 @@ def newElementWindow():
     label_title = Label(newWindow, text="Tytuł:", background = '#312d2d', foreground= "white", font=('Arial',16))
     label_title.place(x = 40, y = 20)
 
-def defineCurrentSelectElement(self):
-    global list_wish_currentSelectElement
-    if(len(list_wish.curselection()) != 0):
-        list_wish_currentSelectElement = list_wish.curselection()[0]
-        print(list_wish_currentSelectElement)
-    else:
-        list_wish_currentSelectElement = -1
+def defineCurrentSelectElement(list):
+    global currentSelectElement
+    currentSelectElement = list.curselection()[0]
 
-def moveElementUp(self):
-    moveElementOnList(True)
-
-def moveElementDown(self):
-    moveElementOnList(False)
-
-def moveElementOnList(moveIsUp):
-    print(list_wish.curselection()[0])
-    if(len(list_wish.curselection()) != 0): #check is element of list is selected
-        if(list_wish.curselection()[0] != 0 or moveIsUp == False): #check is element can move up
-            if(list_wish.curselection()[0] < list_wish.size()-1 or moveIsUp == True): #check is element can move down
-                currentSelectElement = list_wish.curselection()[0]
-                var = list_wish.get(currentSelectElement)
-                list_wish.delete(currentSelectElement)
+def moveElementOnList(moveIsUp, list):
+    if(len(list.curselection()) != 0): #check is element of list is selected
+        if(list.curselection()[0] != 0 or moveIsUp == False): #check is element can move up
+            if(list.curselection()[0] < list.size()-1 or moveIsUp == True): #check is element can move down
+                currentSelectElement = list.curselection()[0]
+                var = list.get(currentSelectElement)
+                list.delete(currentSelectElement)
                 if(moveIsUp == True):
-                    list_wish.insert(currentSelectElement-1, var)
+                    list.insert(currentSelectElement-1, var)
                 else:
-                    list_wish.insert(currentSelectElement+1, var)
-                list_wish.activate(currentSelectElement)
+                    list.insert(currentSelectElement+1, var)
+                list.activate(currentSelectElement)
+
+def moveElementByMouse(list):
+    if(len(list.curselection()) != 0): #check is element of list is selected
+        global currentSelectElement
+        print(list.curselection()[0])
+        newSelection = list.curselection()[0]
+        if(currentSelectElement > newSelection):
+            moveElementOnList(False, list)
+        elif(currentSelectElement < list.curselection()[0]):
+            moveElementOnList(True, list)
+        
         
 
 
@@ -73,10 +73,11 @@ list_wish.place(x = 400, y = 50)
 list_wish.insert(0, 'The Legend of Zelda Tears of the Kingdom')
 list_wish.insert(2, "Pokemom Let's go Pikachu")
 list_wish.insert(1, 'Dark Souls Remaster')
-list_wish.bind('<Up>', moveElementUp)
-list_wish.bind('<Down>', moveElementDown)
-# list_wish.bind('<Button-1>', defineCurrentSelectElement)
-list_wish_currentSelectElement = -1
+list_wish.bind('<Up>', lambda event:moveElementOnList(True, list_wish))
+list_wish.bind('<Down>', lambda event:moveElementOnList(False, list_wish))
+list_wish.bind('<B1-Motion>', lambda event:moveElementByMouse(list_wish))
+list_wish.bind('<FocusIn>', lambda event:defineCurrentSelectElement(list_wish))
+currentSelectElement = -1
 
 label_finishListTitle = Label(window, text="Lista ukończonych gier")
 label_finishListTitle.place(x = 130, y = 20)
@@ -84,6 +85,13 @@ label_finishListTitle.place(x = 130, y = 20)
 list_finish = Listbox(window, height=20, width=40)
 list_finish.place(x = 60, y = 50)
 list_finish.insert(0, 'The Legend of Zelda Breath of the Wild')
+list_finish.insert(1, '1111111111')
+list_finish.insert(2, '2222222222')
+list_finish.insert(3, '33333333')
+list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish))
+list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish))
+list_finish.bind('<B1-Motion>', lambda event:moveElementByMouse(list_finish))
+list_finish.bind('<FocusIn>', lambda event:defineCurrentSelectElement(list_finish))
 
 
 window.mainloop()
