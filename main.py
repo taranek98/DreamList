@@ -4,7 +4,6 @@ def addNewElement(title):
    list_wish.insert(list_wish.size(), title)
 
 def newElementWindow():
-    
     def closeWindow():
         addNewElement(entry_title.get())
         newWindow.destroy()
@@ -58,9 +57,35 @@ def moveElementByMouse(list):
         #     moveElementOnList(False, list, True)
         #     currentSelectElement = newSelection
         # list.activate(newSelection)
-    print(list.nearest())
+    pass
+
+def moveElementToOtherList():
+    if(len(list_wish.curselection()) != 0): #check is element of list is selected
+        list_finish.insert(END, list_wish.get(list_wish.curselection()))
+        list_wish.delete(list_wish.curselection())
+        print(list_wish.get(0,5))
+        print(list_wish.size())
+    else:
+        showMessage("Zaznacz grę aby dodać do listy")
         
-        
+def showMessage(message):
+    messageWindow = Toplevel(window)        
+    messageWindow.title('Message')
+    messageWindow.geometry("300x100")
+    messageWindow.config(background='#312d2d')
+
+    label_message = Label(messageWindow, text = message)
+    label_message.place(x = 55, y = 30)
+
+    button_close = Button(messageWindow, text = 'Zamknij', command = messageWindow.destroy)
+    button_close.place(x = 120, y = 65)
+
+def deleteElement():
+    list = list_wish
+    if(len(list.curselection()) != 0):
+        list.delete(list.curselection()[0])
+    else:
+        showMessage("Zaznacz grę aby usunąć do listy")
 
 
 window = Tk()
@@ -70,16 +95,28 @@ window.config(background='#312d2d')
 
 
 button_addElement = Button(window, text='Dodaj grę', width=15, height= 2, command=newElementWindow)
-button_addElement.place(x = 290, y = 420)
+button_addElement.place(x = 220, y = 420)
+
+button_editElement = Button(window, text='Edytuj', width=15, height= 2)
+button_editElement.place(x = 370, y = 420)
+
+button_MoveElement = Button(window, text='<-', command = moveElementToOtherList)
+button_MoveElement.place(x = 340, y = 200)
+
+button_deleteElement = Button(window, text='kosz', command = deleteElement)
+button_deleteElement.place(x = 335, y = 280)
 
 label_wishListTitle = Label(window, text="Lista życzeń")
-label_wishListTitle.place(x = 490, y = 20)
+label_wishListTitle.place(x = 480, y = 20)
 
 list_wish = Listbox(window, height=20, width=40)
 list_wish.place(x = 400, y = 50)
 list_wish.insert(0, 'The Legend of Zelda Tears of the Kingdom')
 list_wish.insert(2, "Pokemom Let's go Pikachu")
 list_wish.insert(1, 'Dark Souls Remaster')
+list_wish.insert(2, '1111111111')
+list_wish.insert(3, '2222222222')
+list_wish.insert(4, '33333333')
 list_wish.bind('<Up>', lambda event:moveElementOnList(True, list_wish, False))
 list_wish.bind('<Down>', lambda event:moveElementOnList(False, list_wish, False))
 list_wish.bind('<B1-Motion>', lambda event:moveElementByMouse(list_wish))
@@ -99,6 +136,7 @@ list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish, False
 list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish, False))
 list_finish.bind('<B1-Motion>', lambda event:moveElementByMouse(list_finish))
 list_finish.bind('<FocusIn>', lambda event:defineCurrentSelectElement(list_finish))
+
 
 
 window.mainloop()
