@@ -3,6 +3,10 @@ from tkinter import *
 def addNewElement(title):
    list_wish.insert(list_wish.size(), title)
 
+def saveEditedElement(title, index):
+    list_wish.delete(index)
+    list_wish.insert(index, title)
+
 def newElementWindow():
     def closeWindow():
         addNewElement(entry_title.get())
@@ -87,6 +91,27 @@ def deleteElement():
     else:
         showMessage("Zaznacz grę aby usunąć do listy")
 
+def editElement(list):
+    if(len(list.curselection()) != 0):
+        editWindow = Toplevel(window)        
+        editWindow.title('Edytuj grę')
+        editWindow.geometry("400x130")
+        editWindow.config(background='#312d2d')
+
+        entry_title = Entry(editWindow, width = 40)
+        entry_title.place(x = 100, y = 25)
+
+        button_accept = Button(editWindow, text='Zatwierdź', width=10, height=2)
+        button_accept.place(x = 100, y = 75)
+        button_accept.bind('<Button-1>', lambda event: saveEditedElement(entry_title.get(),list.curselection()[0]))
+        button_accept.bind('<Button-1>', lambda event: editWindow.destroy(), add= '+')
+
+        button_cancel = Button(editWindow, text='Anuluj', width=10, height=2, command=lambda:editWindow.destroy())
+        button_cancel.place(x = 220, y = 75)
+
+        label_title = Label(editWindow, text="Tytuł:", background = '#312d2d', foreground= "white", font=('Arial',16))
+        label_title.place(x = 40, y = 20)
+
 
 window = Tk()
 window.title('Dream List')
@@ -97,7 +122,7 @@ window.config(background='#312d2d')
 button_addElement = Button(window, text='Dodaj grę', width=15, height= 2, command=newElementWindow)
 button_addElement.place(x = 220, y = 420)
 
-button_editElement = Button(window, text='Edytuj', width=15, height= 2)
+button_editElement = Button(window, text='Edytuj', width=15, height= 2, command= lambda: editElement(list_wish))
 button_editElement.place(x = 370, y = 420)
 
 button_MoveElement = Button(window, text='<-', command = moveElementToOtherList)
