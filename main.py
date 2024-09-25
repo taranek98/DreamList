@@ -1,15 +1,8 @@
 from tkinter import *
 
-def addNewElement(title):
-   list_wish.insert(list_wish.size(), title)
-
-def saveEditedElement(title, index):
-    list_wish.delete(index)
-    list_wish.insert(index, title)
-
 def newElementWindow():
     def closeWindow():
-        addNewElement(entry_title.get())
+        list_wish.insert(list_wish.size(), entry_title.get())
         newWindow.destroy()
 
     newWindow = Toplevel(window)        
@@ -49,9 +42,10 @@ def moveElementOnList(moveIsUp, list, isMouse):
                     list.insert(currentSelectElement+1, var)
                 list.activate(currentSelectElement)
 
-def moveElementByMouse(list):
-    # if(len(list.curselection()) != 0): #check is element of list is selected
-        # global currentSelectElement
+def moveElementByMouse1(list):
+    if(len(list.curselection()) != 0): #check is element of list is selected
+        global currentSelectElement
+        currentSelectElement = list.curselection()[0]
         # print(list.curselection()[0])
         # newSelection = list.curselection()[0]
         # if(currentSelectElement > newSelection):
@@ -61,7 +55,16 @@ def moveElementByMouse(list):
         #     moveElementOnList(False, list, True)
         #     currentSelectElement = newSelection
         # list.activate(newSelection)
-    pass
+
+def moveElementByMouse2(list):
+    if(len(list.curselection()) != 0): #check is element of list is selected
+        global currentSelectElement
+        if(list.curselection()[0] != currentSelectElement):
+            newPosition = list.curselection()[0]
+            var = list.get(currentSelectElement)
+            list.delete(currentSelectElement)
+            list.insert(newPosition, var)
+
 
 def moveElementToOtherList():
     if(len(list_wish.curselection()) != 0): #check is element of list is selected
@@ -92,18 +95,24 @@ def deleteElement():
         showMessage("Zaznacz grę aby usunąć do listy")
 
 def editElement(list):
+    def saveEdit(title, index):
+        list.delete(index)
+        list.insert(index, title)
+
     if(len(list.curselection()) != 0):
+        currentIndex = list.curselection()[0]
         editWindow = Toplevel(window)        
         editWindow.title('Edytuj grę')
         editWindow.geometry("400x130")
         editWindow.config(background='#312d2d')
 
         entry_title = Entry(editWindow, width = 40)
+        entry_title.insert(0, list.get(currentIndex))
         entry_title.place(x = 100, y = 25)
 
         button_accept = Button(editWindow, text='Zatwierdź', width=10, height=2)
         button_accept.place(x = 100, y = 75)
-        button_accept.bind('<Button-1>', lambda event: saveEditedElement(entry_title.get(),list.curselection()[0]))
+        button_accept.bind('<Button-1>', lambda event: saveEdit(entry_title.get(),currentIndex))
         button_accept.bind('<Button-1>', lambda event: editWindow.destroy(), add= '+')
 
         button_cancel = Button(editWindow, text='Anuluj', width=10, height=2, command=lambda:editWindow.destroy())
@@ -111,6 +120,8 @@ def editElement(list):
 
         label_title = Label(editWindow, text="Tytuł:", background = '#312d2d', foreground= "white", font=('Arial',16))
         label_title.place(x = 40, y = 20)
+    else:
+        showMessage("Zaznacz grę aby ją edytować")
 
 
 window = Tk()
@@ -144,12 +155,14 @@ list_wish.insert(3, '2222222222')
 list_wish.insert(4, '33333333')
 list_wish.bind('<Up>', lambda event:moveElementOnList(True, list_wish, False))
 list_wish.bind('<Down>', lambda event:moveElementOnList(False, list_wish, False))
-list_wish.bind('<B1-Motion>', lambda event:moveElementByMouse(list_wish))
+list_wish.bind('<ButtonPress-1>', lambda event:moveElementByMouse1(list_wish))
+list_wish.bind('<ButtonRelease-1>', lambda event:moveElementByMouse2(list_wish))
 list_wish.bind('<FocusIn>', lambda event:defineCurrentSelectElement(list_wish))
 currentSelectElement = -1
 
 label_finishListTitle = Label(window, text="Lista ukończonych gier")
 label_finishListTitle.place(x = 130, y = 20)
+
 
 list_finish = Listbox(window, height=20, width=40)
 list_finish.place(x = 60, y = 50)
@@ -159,7 +172,7 @@ list_finish.insert(2, '2222222222')
 list_finish.insert(3, '33333333')
 list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish, False))
 list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish, False))
-list_finish.bind('<B1-Motion>', lambda event:moveElementByMouse(list_finish))
+# list_finish.bind('<B1-Motion>', lambda event:moveElementByMouse1(list_finish))
 list_finish.bind('<FocusIn>', lambda event:defineCurrentSelectElement(list_finish))
 
 
