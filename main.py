@@ -1,6 +1,7 @@
 from tkinter import *
 from window import addElement
 from element import *
+from status import *
 
 window = Tk()
 window.title('Dream List')
@@ -32,6 +33,8 @@ list_wish.insert(3, '2222222222')
 list_wish.insert(4, '33333333')
 list_wish.bind('<Up>', lambda event:moveElementOnList(True, list_wish, False))
 list_wish.bind('<Down>', lambda event:moveElementOnList(False, list_wish, False))
+list_wish.bind('<FocusIn>', selectListWish)
+list_wish.bind('<FocusOut>', deselectListWish)
 
 label_finishListTitle = Label(window, text="Lista ukończonych gier")
 label_finishListTitle.place(x = 130, y = 20)
@@ -44,5 +47,7 @@ list_finish.insert(2, '2222222222')
 list_finish.insert(3, '33333333')
 list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish, False))
 list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish, False))
+list_finish.bind('<FocusIn>', selectListFinish)
+list_finish.bind('<FocusOut>', deselectListFinish)
 
 window.mainloop()
