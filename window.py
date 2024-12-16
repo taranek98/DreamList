@@ -1,4 +1,4 @@
-from tkinter import Toplevel, Entry, Button, Label
+from tkinter import *
 
 def addElement(window, list):
     newWindow = Toplevel(window)        
