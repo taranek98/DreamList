@@ -9,15 +9,18 @@ def addElement(window, list):
     newWindow.title('Dodaj nową grę')
     newWindow.geometry("400x130")
     newWindow.config(background='#312d2d')
+    newWindow.bind("<Return>", lambda event: saveAdd(list, entry_title.get()),'+')
+    newWindow.bind("<Return>", lambda event: newWindow.destroy(), "+")
+    newWindow.bind("<Escape>", lambda event:  newWindow.destroy())
 
     entry_title = Entry(newWindow, width = 40)
     entry_title.place(x = 100, y = 25)
 
     button_accept = Button(newWindow, text='Zatwierdź', width=10, height=2, command=lambda:newWindow.destroy())
     button_accept.place(x = 100, y = 75)
-    button_accept.bind("<Button-1>", lambda event:saveAdd(list, entry_title.get()),'+')
-    button_accept.bind("<Button-1>", lambda event:newWindow.destroy(), "+")
-
+    button_accept.bind("<Button-1>", lambda event: saveAdd(list, entry_title.get()),'+')
+    button_accept.bind("<Button-1>", lambda event: newWindow.destroy(), "+")
+    
     button_cancel = Button(newWindow, text='Anuluj', width=10, height=2, command=lambda:newWindow.destroy())
     button_cancel.place(x = 220, y = 75)
 
@@ -34,6 +37,9 @@ def editElement(window, list1, list2):
         editWindow.title('Edytuj grę')
         editWindow.geometry("400x130")
         editWindow.config(background='#312d2d')
+        editWindow.bind("<Return>", lambda event: saveEdit(activeList, entry_title.get(),currentIndex),'+')
+        editWindow.bind("<Return>", lambda event: editWindow.destroy(), "+")
+        editWindow.bind("<Escape>", lambda event: editWindow.destroy())
 
         entry_title = Entry(editWindow, width = 40)
         entry_title.insert(0, activeList.get(currentIndex))
