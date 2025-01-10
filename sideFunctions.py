@@ -6,11 +6,13 @@ def checkIfActive_arg1(list):
     else:
         return False
     
-def checkIfActive_arg2(list1, list2):
+def checkIfActive_arg3(list1, list2, list3):
     if(len(list1.curselection()) != 0):
         return list1
     elif(len(list2.curselection()) != 0):
         return list2
+    elif(len(list3.curselection()) != 0):
+        return list3
     else:
         return None
     

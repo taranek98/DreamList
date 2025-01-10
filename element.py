@@ -2,7 +2,7 @@
 
 from tkinter import *
 from window import showMessage
-from sideFunctions import checkIfActive_arg1, getSelectElement
+from sideFunctions import checkIfActive_arg1, checkIfActive_arg3, getSelectElement
 
 def moveElementOnList(moveIsUp, list):
     if(checkIfActive_arg1(list) == True): 
@@ -24,9 +24,10 @@ def moveElementToOtherList(window, listSource, listDestin):
     else:
         showMessage("Zaznacz grę aby dodać do listy", window)
 
-def deleteElement(window, list):
-    if(checkIfActive_arg1(list) == True):
-        list.delete(list.curselection()[0])
+def deleteElement(window, list1, list2, list3):
+    activeList = checkIfActive_arg3(list1, list2, list3)
+    if(activeList != None):
+        activeList.delete(activeList.curselection()[0])
     else:
         showMessage("Zaznacz grę aby usunąć do listy", window)
 

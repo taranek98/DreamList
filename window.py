@@ -1,7 +1,7 @@
 # File contains functions responsible for create new windows
 
 from tkinter import *
-from sideFunctions import checkIfActive_arg2, getSelectElement
+from sideFunctions import checkIfActive_arg3, getSelectElement
 from windowElement import *
 
 def addElement(window, list):
@@ -20,7 +20,7 @@ def addElement(window, list):
     button_accept.place(x = 100, y = 75)
     button_accept.bind("<Button-1>", lambda event: saveAdd(list, entry_title.get()),'+')
     button_accept.bind("<Button-1>", lambda event: newWindow.destroy(), "+")
-    
+
     button_cancel = Button(newWindow, text='Anuluj', width=10, height=2, command=lambda:newWindow.destroy())
     button_cancel.place(x = 220, y = 75)
 
@@ -29,8 +29,8 @@ def addElement(window, list):
 
 
 
-def editElement(window, list1, list2):
-    activeList = checkIfActive_arg2(list1, list2)
+def editElement(window, list1, list2, list3):
+    activeList = checkIfActive_arg3(list1, list2, list3)
     if(activeList != None):
         currentIndex = getSelectElement(activeList)
         editWindow = Toplevel(window)        

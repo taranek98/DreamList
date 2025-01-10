@@ -15,3 +15,8 @@ def fillFinishList(list):
     list.insert(1, '1111111111')
     list.insert(2, '2222222222')
     list.insert(3, '33333333')
+
+#Insert example data to finish list
+def fillPlayingList(list):
+    list.insert(0, 'Diablo 2 Resurected')
+    list.insert(1, 'Spiritfarer')
