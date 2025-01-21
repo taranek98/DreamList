@@ -18,3 +18,15 @@ def checkIfActive_arg3(list1, list2, list3):
     
 def getSelectElement(list):
     return list.curselection()[0]
+
+def convertListToObject(List):
+    index = 0
+    objects = list()
+    while index < List.size():
+        object = {
+            "ID": index,
+            "Name": List.get(index)
+        }
+        index = index + 1
+        objects.append(object)
+    return objects

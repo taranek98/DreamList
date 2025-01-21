@@ -12,6 +12,7 @@ window.title('Dream List')
 window.geometry("1040x500")
 window.config(background='#312d2d')
 # window.bind('<Destroy>', lambda event: saveToJson(list_wish, list_playing, list_finish))
+window.bind('<+>', lambda event: addElement(window, list_wish))
 
 #Buttons initialization
 button_addElement = Button(window, text='Dodaj grę', width=15, height= 2, command=lambda:addElement(window, list_wish))
@@ -28,9 +29,6 @@ button_MoveElementToPlaying.place(x = 675, y = 200)
 
 button_deleteElement = Button(window, text='Usuń', width=15, height= 2, command = lambda: deleteElement(window, list_wish, list_playing, list_finish))
 button_deleteElement.place(x = 465, y = 420)
-
-button_deleteElement = Button(window, text='zapisz json', width=15, height= 2, command = lambda: saveToJson(list_wish, list_playing, list_finish))
-button_deleteElement.place(x = 0, y = 420)
 
 #Labels initialization
 label_playingListTitle = Label(window, text="Obecnie grane")
@@ -58,9 +56,20 @@ list_finish.place(x = 60, y = 50)
 list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish))
 list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish))
 
+# Menubar init
+menuBar = Menu(window)
+file = Menu(menuBar, tearoff = 0)
+menuBar.add_cascade(menu = file, label= 'File')
+file.add_command(command=lambda: exportDataFromList(list_wish, list_playing, list_finish, window), label= 'Save')
+file.add_command(command=lambda: importDataToList(list_wish, list_playing, list_finish, window), label= 'Load')
+# importDataToList(list_wish, list_playing, list_finish)
 # TESTS
-fillWishList(list_wish)
-fillFinishList(list_finish)
-fillPlayingList(list_playing)
+# fillWishList(list_wish)
+# fillFinishList(list_finish)
+# fillPlayingList(list_playing)
 
+# Display menubar
+window.config(menu=menuBar)
+
+# program loop
 window.mainloop()

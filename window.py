@@ -9,12 +9,14 @@ def addElement(window, list):
     newWindow.title('Dodaj nową grę')
     newWindow.geometry("400x130")
     newWindow.config(background='#312d2d')
+    newWindow.focus_set()
     newWindow.bind("<Return>", lambda event: saveAdd(list, entry_title.get()),'+')
     newWindow.bind("<Return>", lambda event: newWindow.destroy(), "+")
     newWindow.bind("<Escape>", lambda event:  newWindow.destroy())
 
     entry_title = Entry(newWindow, width = 40)
     entry_title.place(x = 100, y = 25)
+    entry_title.focus_set()
 
     button_accept = Button(newWindow, text='Zatwierdź', width=10, height=2, command=lambda:newWindow.destroy())
     button_accept.place(x = 100, y = 75)

@@ -2,7 +2,8 @@
 
 from tkinter import *
 from window import showMessage
-from sideFunctions import checkIfActive_arg1, checkIfActive_arg3, getSelectElement
+from sideFunctions import checkIfActive_arg1, checkIfActive_arg3, getSelectElement, convertListToObject
+from database import readFromJson, saveToJson
 
 def moveElementOnList(moveIsUp, list):
     if(checkIfActive_arg1(list) == True): 
@@ -31,5 +32,40 @@ def deleteElement(window, list1, list2, list3):
     else:
         showMessage("Zaznacz grę aby usunąć do listy", window)
 
+def importDataToList(list_wish, list_playing, list_finish, window):
+    try:
+        clearList(list_wish)
+        objects = readFromJson('wish')
+        convertAndLoadData(list_wish, objects)
+        clearList(list_playing)
+        objects = readFromJson('playing')
+        convertAndLoadData(list_playing, objects)
+        clearList(list_finish)
+        objects = readFromJson('finish')
+        convertAndLoadData(list_finish, objects)
+    except:
+        showMessage("Wczytywanie zakończone niepowodzeniem", window)
+            
+def exportDataFromList(list_wish, list_playing, list_finish, window):
+    operationResult = saveToJson(convertListToObject(list_wish), 'wish')
+    if(operationResult == True):
+        operationResult = saveToJson(convertListToObject(list_playing), 'playing')
+        if(operationResult == True):
+            operationResult = saveToJson(convertListToObject(list_finish), 'finish')
+            if(operationResult == False):
+                showMessage("Zapis zakończony niepowodzeniem", window)
+        else:
+            showMessage("Zapis zakończony niepowodzeniem", window)
+    else:
+        showMessage("Zapis zakończony niepowodzeniem", window)
 
+def convertAndLoadData(list, readObjects):
+    for object in readObjects:
+        list.insert(object["ID"], object["Name"])
+
+def clearList(list):
+    lastIndex = list.size()
+    while(lastIndex >= 0):
+        list.delete(lastIndex)
+        lastIndex = lastIndex - 1 
 
