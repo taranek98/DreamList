@@ -73,3 +73,23 @@ def showMessage(message, window):
 
     button_close = Button(messageWindow, text = 'Zamknij', command = messageWindow.destroy)
     button_close.place(x = 120, y = 65)
+
+def closeMainWindow(window):
+    newWindow = Toplevel(window)
+    newWindow.title('Quit')
+    newWindow.geometry("300x100")
+    newWindow.config(background='#312d2d')
+
+    label_message = Label(newWindow, text = 'Chcesz zapisać przed wyjściem?')
+    label_message.place(x = 55, y = 30)
+
+    button_save = Button(newWindow, text = 'Zapisz', command = newWindow.destroy)
+    button_save.place(x = 70, y = 65)
+
+    button_noSave = Button(newWindow, text = 'Nie zapisuj')
+    button_noSave.bind("<Button-1>", lambda event: window.destroy(), add ="+")
+    button_noSave.bind("<Button-1>", newWindow.destroy, add ="+")
+    button_noSave.place(x = 120, y = 65)
+
+    button_cancel = Button(newWindow, text = 'Anuluj', command = newWindow.destroy)
+    button_cancel.place(x = 200, y = 65)

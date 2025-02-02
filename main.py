@@ -1,17 +1,19 @@
 #File initialize main window program and execute program loop
 
 from tkinter import *
-from window import addElement, editElement
+from window import addElement, editElement, closeMainWindow
 from element import *
 from tests import *
 from database import *
+
+
 
 # Main window initialization
 window = Tk()
 window.title('Dream List')
 window.geometry("1040x500")
 window.config(background='#312d2d')
-# window.bind('<Destroy>', lambda event: saveToJson(list_wish, list_playing, list_finish))
+# window.bind('<Destroy>', lambda event: exportDataFromList(list_wish, list_playing, list_finish, window))
 window.bind('<+>', lambda event: addElement(window, list_wish))
 
 #Buttons initialization
@@ -70,6 +72,9 @@ file.add_command(command=lambda: importDataToList(list_wish, list_playing, list_
 
 # Display menubar
 window.config(menu=menuBar)
+
+# Handled exit button
+window.protocol("WM_DELETE_WINDOW", lambda: closeMainWindow(window))
 
 # program loop
 window.mainloop()
