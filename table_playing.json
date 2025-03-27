@@ -1,7 +1,7 @@
 [
    {
       "ID": 0,
-      "Name": "SpiritFarer"
+      "Name": "Final Fantasy I"
    },
    {
       "ID": 1,
@@ -42,5 +42,33 @@
    {
       "ID": 10,
       "Name": "Dishonored"
+   },
+   {
+      "ID": 11,
+      "Name": "The Elder Scrolls V: Skyrim"
+   },
+   {
+      "ID": 12,
+      "Name": "Dark Souls: Remaster"
+   },
+   {
+      "ID": 13,
+      "Name": "Final Fantasy II"
+   },
+   {
+      "ID": 14,
+      "Name": "Final Fantasy III"
+   },
+   {
+      "ID": 15,
+      "Name": "Final Fantasy IV"
+   },
+   {
+      "ID": 16,
+      "Name": "Final Fantasy V"
+   },
+   {
+      "ID": 17,
+      "Name": "Final Fantasy VI"
    }
 ]
