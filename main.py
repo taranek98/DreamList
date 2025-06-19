@@ -5,16 +5,23 @@ from window import addElement, editElement, closeMainWindow
 from element import *
 from tests import *
 from database import *
+from tkinter import font
+
 
 
 
 # Main window initialization
 window = Tk()
 window.title('Dream List')
-window.geometry("1040x500")
-window.config(background='#312d2d')
+
+# f = font.nametofont('TkDefaultFont')
+# print(f.actual())
+print(((window.winfo_screenwidth() / 2) * 0.35) / 13)
+print(window.winfo_screenwidth())
+window.config(background='#312d2d', width = window.winfo_screenwidth()/2, height = window.winfo_screenheight()/2)
 # window.bind('<Destroy>', lambda event: exportDataFromList(list_wish, list_playing, list_finish, window))
 window.bind('<+>', lambda event: addElement(window, list_wish))
+
 
 #Buttons initialization
 button_addElement = Button(window, text='Dodaj grę', width=15, height= 2, command=lambda:addElement(window, list_wish))
@@ -27,7 +34,7 @@ button_MoveElementToFinish = Button(window, text='<-', command = lambda: moveEle
 button_MoveElementToFinish.place(x = 340, y = 200)
 
 button_MoveElementToPlaying = Button(window, text='<-', command = lambda: moveElementToOtherList(window, list_wish, list_playing))
-button_MoveElementToPlaying.place(x = 675, y = 200)
+button_MoveElementToPlaying.place(x = 800, y = 200)
 
 button_deleteElement = Button(window, text='Usuń', width=15, height= 2, command = lambda: deleteElement(window, list_wish, list_playing, list_finish))
 button_deleteElement.place(x = 465, y = 420)
@@ -39,24 +46,25 @@ label_playingListTitle.place(x = 480, y = 20)
 label_wishListTitle = Label(window, text="Lista życzeń")
 label_wishListTitle.place(x = 820, y = 20)
 
+
 label_finishListTitle = Label(window, text="Lista ukończonych gier")
 label_finishListTitle.place(x = 130, y = 20)
-
 #List initializtion
-list_wish = Listbox(window, height=20, width=40)
-list_wish.place(x = 730, y = 50)
+list_wish = Listbox(window, height=20, width = int((window.winfo_width() * 0.3)/13))
+# list_wish.place(x = window.winfo_width() * 0.67, y = 20)
 list_wish.bind('<Up>', lambda event:moveElementOnList(True, list_wish))
 list_wish.bind('<Down>', lambda event:moveElementOnList(False, list_wish))
 
-list_playing = Listbox(window, height=20, width=40)
-list_playing.place(x = 400, y = 50)
-list_playing.bind('<Up>', lambda event:moveElementOnList(True, list_playing))
+list_playing = Listbox(window, height=20, width = int((window.winfo_screenwidth()/2 * 0.3)/13))
+list_playing.place(x = ((window.winfo_screenwidth() / 2) * 0.35), y = 20)
 list_playing.bind('<Down>', lambda event:moveElementOnList(False, list_playing))
+list_playing.bind('<Up>', lambda event:moveElementOnList(True, list_playing))
 
-list_finish = Listbox(window, height=20, width=40)
-list_finish.place(x = 60, y = 50)
+list_finish = Listbox(window, height=20, width = int((window.winfo_screenwidth()/2 * 0.3)/13))
+list_finish.place(x = ((window.winfo_screenwidth() / 2) * 0.03), y = 20)
 list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish))
 list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish))
+print(int((window.winfo_screenwidth()/2 * 0.3)/13))
 
 # Menubar init
 menuBar = Menu(window)
