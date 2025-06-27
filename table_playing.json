@@ -1,74 +1,66 @@
 [
    {
       "ID": 0,
-      "Name": "Final Fantasy I"
-   },
-   {
-      "ID": 1,
       "Name": "Diablo 2 Resurected"
    },
    {
-      "ID": 2,
+      "ID": 1,
       "Name": "The Legend of Zelda: Breath of the Wild"
    },
    {
-      "ID": 3,
+      "ID": 2,
       "Name": "Final Fantasy VII"
    },
    {
-      "ID": 4,
-      "Name": "Pokemon: Let's Go Pikachu"
-   },
-   {
-      "ID": 5,
+      "ID": 3,
       "Name": "Portal"
    },
    {
-      "ID": 6,
+      "ID": 4,
       "Name": "Portal 2"
    },
    {
-      "ID": 7,
+      "ID": 5,
       "Name": "Need for Speed: Hot pursuit"
    },
    {
-      "ID": 8,
+      "ID": 6,
       "Name": "Company of Heroes"
    },
    {
-      "ID": 9,
+      "ID": 7,
       "Name": "The Bard's Tale"
    },
    {
-      "ID": 10,
+      "ID": 8,
       "Name": "Dishonored"
    },
    {
-      "ID": 11,
+      "ID": 9,
       "Name": "The Elder Scrolls V: Skyrim"
    },
    {
-      "ID": 12,
+      "ID": 10,
       "Name": "Dark Souls: Remaster"
    },
    {
-      "ID": 13,
+      "ID": 11,
       "Name": "Final Fantasy II"
    },
    {
-      "ID": 14,
+      "ID": 12,
       "Name": "Final Fantasy III"
    },
    {
-      "ID": 15,
+      "ID": 13,
       "Name": "Final Fantasy IV"
    },
    {
-      "ID": 16,
+      "ID": 14,
       "Name": "Final Fantasy V"
    },
    {
-      "ID": 17,
+      "ID": 15,
       "Name": "Final Fantasy VI"
    }
 ]

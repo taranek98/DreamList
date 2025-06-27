@@ -14,57 +14,57 @@ from tkinter import font
 window = Tk()
 window.title('Dream List')
 
-# f = font.nametofont('TkDefaultFont')
-# print(f.actual())
-print(((window.winfo_screenwidth() / 2) * 0.35) / 13)
-print(window.winfo_screenwidth())
+f = font.nametofont('TkDefaultFont')
+fontSize = f.actual('size')
+
+# print(((window.winfo_screenwidth() / 2) * 0.35))
+# print(window.winfo_screenwidth())
 window.config(background='#312d2d', width = window.winfo_screenwidth()/2, height = window.winfo_screenheight()/2)
 # window.bind('<Destroy>', lambda event: exportDataFromList(list_wish, list_playing, list_finish, window))
 window.bind('<+>', lambda event: addElement(window, list_wish))
 
 
 #Buttons initialization
-button_addElement = Button(window, text='Dodaj grę', width=15, height= 2, command=lambda:addElement(window, list_wish))
-button_addElement.place(x = 285, y = 420)
+button_addElement = Button(window, text='Dodaj grę', width = 10, command=lambda:addElement(window, list_wish))
+button_addElement.place(x = (window.winfo_screenwidth() / 2) * 0.25, y = (window.winfo_screenheight() / 2) * 0.89)
 
-button_editElement = Button(window, text='Edytuj', width=15, height= 2, command= lambda: editElement(window, list_wish, list_playing, list_finish))
-button_editElement.place(x = 645, y = 420)
+button_editElement = Button(window, text='Edytuj', width = 10, command= lambda: editElement(window, list_wish, list_playing, list_finish))
+button_editElement.place(x = (window.winfo_screenwidth() / 2) * 0.45, y = (window.winfo_screenheight() / 2) * 0.89)
 
-button_MoveElementToFinish = Button(window, text='<-', command = lambda: moveElementToOtherList(window, list_playing, list_finish))
-button_MoveElementToFinish.place(x = 340, y = 200)
-
-button_MoveElementToPlaying = Button(window, text='<-', command = lambda: moveElementToOtherList(window, list_wish, list_playing))
-button_MoveElementToPlaying.place(x = 800, y = 200)
-
-button_deleteElement = Button(window, text='Usuń', width=15, height= 2, command = lambda: deleteElement(window, list_wish, list_playing, list_finish))
-button_deleteElement.place(x = 465, y = 420)
+button_deleteElement = Button(window, text='Usuń', width = 10, command = lambda: deleteElement(window, list_wish, list_playing, list_finish))
+button_deleteElement.place(x = (window.winfo_screenwidth() / 2) * 0.65, y = (window.winfo_screenheight() / 2) * 0.89)
 
 #Labels initialization
-label_playingListTitle = Label(window, text="Obecnie grane")
-label_playingListTitle.place(x = 480, y = 20)
+label_wishListTitle = Label(window, text="Lista życzeń", width=20)
+label_wishListTitle.place(x = ((window.winfo_screenwidth() / 2) * 0.73), y = (window.winfo_screenheight() / 2) * 0.05)
 
-label_wishListTitle = Label(window, text="Lista życzeń")
-label_wishListTitle.place(x = 820, y = 20)
+label_playingListTitle = Label(window, text="Obecnie grane", width=20)
+label_playingListTitle.place(x = (window.winfo_screenwidth() / 2) * 0.41, y = (window.winfo_screenheight() / 2) * 0.05)
 
+label_finishListTitle = Label(window, text="Lista ukończonych gier", width=20)
+label_finishListTitle.place(x = ((window.winfo_screenwidth() / 2) * 0.09), y = (window.winfo_screenheight() / 2) * 0.05)
 
-label_finishListTitle = Label(window, text="Lista ukończonych gier")
-label_finishListTitle.place(x = 130, y = 20)
 #List initializtion
-list_wish = Listbox(window, height=20, width = int((window.winfo_width() * 0.3)/13))
-# list_wish.place(x = window.winfo_width() * 0.67, y = 20)
+list_wish = Listbox(window)
+list_wish.place(x = (window.winfo_screenwidth() / 2) * 0.67, y = (window.winfo_screenheight() / 2) * 0.12, 
+                width= window.winfo_screenwidth()/2 * 0.3, height = (window.winfo_screenheight() / 2) * 0.72)
 list_wish.bind('<Up>', lambda event:moveElementOnList(True, list_wish))
 list_wish.bind('<Down>', lambda event:moveElementOnList(False, list_wish))
+list_wish.bind('<Left>', lambda event: moveElementToOtherList(window, list_wish, list_playing))
 
-list_playing = Listbox(window, height=20, width = int((window.winfo_screenwidth()/2 * 0.3)/13))
-list_playing.place(x = ((window.winfo_screenwidth() / 2) * 0.35), y = 20)
+list_playing = Listbox(window)
+list_playing.place(x = ((window.winfo_screenwidth() / 2) * 0.35), y = (window.winfo_screenheight() / 2) * 0.12, 
+                width= window.winfo_screenwidth()/2 * 0.3, height = (window.winfo_screenheight() / 2) * 0.72)
 list_playing.bind('<Down>', lambda event:moveElementOnList(False, list_playing))
 list_playing.bind('<Up>', lambda event:moveElementOnList(True, list_playing))
+list_playing.bind('<Left>', lambda event: moveElementToOtherList(window, list_playing, list_finish))
 
-list_finish = Listbox(window, height=20, width = int((window.winfo_screenwidth()/2 * 0.3)/13))
-list_finish.place(x = ((window.winfo_screenwidth() / 2) * 0.03), y = 20)
+list_finish = Listbox(window)
+list_finish.place(x = ((window.winfo_screenwidth() / 2) * 0.03), y = (window.winfo_screenheight() / 2) * 0.12, 
+                  width= window.winfo_screenwidth()/2 * 0.3, height = (window.winfo_screenheight() / 2) * 0.72)
 list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish))
 list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish))
-print(int((window.winfo_screenwidth()/2 * 0.3)/13))
+# print(int((window.winfo_screenwidth()/2 * 0.35)/fontSize))
 
 # Menubar init
 menuBar = Menu(window)
@@ -72,7 +72,7 @@ file = Menu(menuBar, tearoff = 0)
 menuBar.add_cascade(menu = file, label= 'File')
 file.add_command(command=lambda: exportDataFromList(list_wish, list_playing, list_finish, window), label= 'Save')
 file.add_command(command=lambda: importDataToList(list_wish, list_playing, list_finish, window), label= 'Load')
-# importDataToList(list_wish, list_playing, list_finish)
+importDataToList(list_wish, list_playing, list_finish, window)
 # TESTS
 # fillWishList(list_wish)
 # fillFinishList(list_finish)

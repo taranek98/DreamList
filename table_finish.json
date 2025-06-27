@@ -2,5 +2,13 @@
    {
       "ID": 0,
       "Name": "SpiritFarer"
+   },
+   {
+      "ID": 1,
+      "Name": "Final Fantasy I"
+   },
+   {
+      "ID": 2,
+      "Name": "Pokemon: Let's Go Pikachu"
    }
 ]
