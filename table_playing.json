@@ -1,66 +1,66 @@
 [
    {
       "ID": 0,
-      "Name": "Diablo 2 Resurected"
+      "Name": "1. Diablo 2 Resurected"
    },
    {
       "ID": 1,
-      "Name": "The Legend of Zelda: Breath of the Wild"
+      "Name": "2. The Legend of Zelda: Breath of the Wild"
    },
    {
       "ID": 2,
-      "Name": "Final Fantasy VII"
+      "Name": "3. Final Fantasy VII"
    },
    {
       "ID": 3,
-      "Name": "Portal"
+      "Name": "4. Portal"
    },
    {
       "ID": 4,
-      "Name": "Portal 2"
+      "Name": "5. Portal 2"
    },
    {
       "ID": 5,
-      "Name": "Need for Speed: Hot pursuit"
+      "Name": "6. Need for Speed: Hot pursuit"
    },
    {
       "ID": 6,
-      "Name": "Company of Heroes"
+      "Name": "7. Company of Heroes"
    },
    {
       "ID": 7,
-      "Name": "The Bard's Tale"
+      "Name": "8. The Bard's Tale"
    },
    {
       "ID": 8,
-      "Name": "Dishonored"
+      "Name": "9. Dishonored"
    },
    {
       "ID": 9,
-      "Name": "The Elder Scrolls V: Skyrim"
+      "Name": "10. The Elder Scrolls V: Skyrim"
    },
    {
       "ID": 10,
-      "Name": "Dark Souls: Remaster"
+      "Name": "11. Dark Souls: Remaster"
    },
    {
       "ID": 11,
-      "Name": "Final Fantasy II"
+      "Name": "12. Final Fantasy II"
    },
    {
       "ID": 12,
-      "Name": "Final Fantasy III"
+      "Name": "13. Final Fantasy III"
    },
    {
       "ID": 13,
-      "Name": "Final Fantasy IV"
+      "Name": "14. Final Fantasy IV"
    },
    {
       "ID": 14,
-      "Name": "Final Fantasy V"
+      "Name": "15. Final Fantasy V"
    },
    {
       "ID": 15,
-      "Name": "Final Fantasy VI"
+      "Name": "16. Final Fantasy VI"
    }
 ]

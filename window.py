@@ -44,7 +44,7 @@ def editElement(window, list1, list2, list3):
         editWindow.bind("<Escape>", lambda event: editWindow.destroy())
 
         entry_title = Entry(editWindow, width = 40)
-        entry_title.insert(0, activeList.get(currentIndex))
+        entry_title.insert(0, activeList.get(currentIndex)[activeList.get(currentIndex).find(". ")+2:])
         entry_title.place(x = 100, y = 25)
 
         button_accept = Button(editWindow, text='Zatwierdź', width=10, height=2)

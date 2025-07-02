@@ -17,8 +17,7 @@ window.title('Dream List')
 f = font.nametofont('TkDefaultFont')
 fontSize = f.actual('size')
 
-# print(((window.winfo_screenwidth() / 2) * 0.35))
-# print(window.winfo_screenwidth())
+
 window.config(background='#312d2d', width = window.winfo_screenwidth()/2, height = window.winfo_screenheight()/2)
 # window.bind('<Destroy>', lambda event: exportDataFromList(list_wish, list_playing, list_finish, window))
 window.bind('<+>', lambda event: addElement(window, list_wish))
@@ -64,7 +63,6 @@ list_finish.place(x = ((window.winfo_screenwidth() / 2) * 0.03), y = (window.win
                   width= window.winfo_screenwidth()/2 * 0.3, height = (window.winfo_screenheight() / 2) * 0.72)
 list_finish.bind('<Up>', lambda event:moveElementOnList(True, list_finish))
 list_finish.bind('<Down>', lambda event:moveElementOnList(False, list_finish))
-# print(int((window.winfo_screenwidth()/2 * 0.35)/fontSize))
 
 # Menubar init
 menuBar = Menu(window)
