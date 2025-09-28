@@ -1,2 +1,2 @@
 Link do dokumentacji:
-https://trello.com/c/OhJ2RG2E/31-nowe-okna-dialogowe
+https://trello.com/b/7UOTijnr/dream-list-app
